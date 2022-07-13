@@ -26,10 +26,6 @@ export default function DataProvider({ children }) {
 
   };
 
-  console.log(user);
-  console.log(movies);
-  console.log(watchlist);
-
   async function getAllMovies(title) {
     const movies = await fetchAllMovies(title);
 

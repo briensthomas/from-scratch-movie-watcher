@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
 import { useDataContext } from './DataProvider';
 
 export default function MovieList({ movies }) {
   const { URL, 
     handleAddToWatchlist, 
-    handleFetchWatchlist,
     handleDeleteFromWatchlist,
-    watchlist, setUser, user,
+    watchlist,
   } = useDataContext();
 
 

@@ -32,7 +32,6 @@ export default function AuthPage() {
     const user = await signInUser(signInEmail, signInPassword);
     
     setUser(user);
-    console.log(user);
   }
 
   return (

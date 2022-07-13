@@ -36,7 +36,7 @@ export default function App() {
             {user &&
             <>
               <li>
-                <Link to="/movies">Movies List Search</Link>
+                <Link to="/movies">Movies</Link>
               </li>
               <li>
                 <Link to="/watchlist">Watchlist </Link>

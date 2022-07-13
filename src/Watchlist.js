@@ -15,7 +15,8 @@ export default function Favorites() {
   }, [id]); //eslint-disable-line
 
   return (
-    <div>
+    <div className='watchlist'>
+      <h2>My Watchlist</h2>
       {
         <MovieList movies={watchlist} />
       }
