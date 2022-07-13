@@ -5,7 +5,7 @@ export default function MovieList({ movies }) {
   const { URL } = useDataContext();
 
   return (
-    <div>
+    <div className='movies-list'>
       {
         movies.map((movie, i) => 
           <div className='movie-card' 
