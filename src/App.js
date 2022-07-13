@@ -3,19 +3,30 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
+import AuthPage from './AuthPage';
+import MovieList from './MovieList';
+import Favorites from './Favorites';
 import './App.css';
-
+import { logout } from './services/fetch-utils';
+import { useDataContext } from './DataProvider';
 
 export default function App() {
+  const { user, setUser } = useDataContext();
+
+  async function handleLogout() {
+    await logout();
+  }
+
   return (
     <Router>
       <div>
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Auth Page</Link>
             </li>
             <li>
               <Link to="/movies">Movies List Search</Link>
@@ -23,35 +34,40 @@ export default function App() {
             <li>
               <Link to="/favorites">Favorites (Watch List) </Link>
             </li>
+            {
+              user
+              && <li>
+                <button onClick={handleLogout}>Logout</button></li>
+            }
           </ul>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/">
-            <About />
+          <Route exact path="/">
+            {
+              user
+                ? <Redirect to='/movies' /> 
+                : <AuthPage />
+            }
           </Route>
-          <Route path="/movies">
-            <Users />
+          <Route exact path="/movies">   
+            {
+              !user
+                ? <Redirect to='/' />
+                : <MovieList />
+            }
           </Route>
-          <Route path="/favorites">
-            <Home />
+          <Route exact path="/favorites">
+            {
+              !user
+                ? <Redirect to='/' />
+                : <Favorites />
+            }
           </Route>
         </Switch>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }

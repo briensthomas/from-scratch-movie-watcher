@@ -10,7 +10,7 @@ const headers = {
 
 exports.handler = async (event, context) => {
   try {
-    const response = await fetch('https://cat-fact.herokuapp.com/facts');
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
     const data = await response.json();
     const json = JSON.stringify(data);
     
