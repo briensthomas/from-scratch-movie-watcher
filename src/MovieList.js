@@ -25,7 +25,7 @@ export default function MovieList({ movies }) {
             <img src={`${URL}${movie.poster_path}`} />
             <p>{movie.overview}</p>
       
-            <button onClick={() => 
+            <button className='watchlist-btn' onClick={() => 
               alreadyOnWatchlist 
                 ? handleDeleteFromWatchlist(alreadyOnWatchlist.id)
                 : handleAddToWatchlist({
@@ -33,7 +33,7 @@ export default function MovieList({ movies }) {
                   poster_path: movie.poster_path,
                   title: movie.title
                 })
-            }>{ alreadyOnWatchlist ? '❤️' : 'Add to Watchlist'} </button>
+            }>{ alreadyOnWatchlist ? '❤️' : '♡'} </button>
           </div>;
         })
       }
