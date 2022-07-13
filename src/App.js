@@ -6,12 +6,14 @@ import {
   Link,
   Redirect
 } from 'react-router-dom';
+import SearchPage from './SearchPage';
 import AuthPage from './AuthPage';
-import Favorites from './Favorites';
+import Watchlist from './Watchlist';
 import './App.css';
 import { logout } from './services/fetch-utils';
 import { useDataContext } from './DataProvider';
-import SearchPage from './SearchPage';
+
+
 
 export default function App() {
   const { user } = useDataContext();
@@ -32,7 +34,7 @@ export default function App() {
               <Link to="/movies">Movies List Search</Link>
             </li>
             <li>
-              <Link to="/favorites">Favorites (Watch List) </Link>
+              <Link to="/watchlist">Watchlist </Link>
             </li>
             {
               user
@@ -59,11 +61,11 @@ export default function App() {
                 : <SearchPage />
             }
           </Route>
-          <Route exact path="/favorites">
+          <Route exact path="/watchlist">
             {
               !user
                 ? <Redirect to='/' />
-                : <Favorites />
+                : <Watchlist />
             }
           </Route>
         </Switch>

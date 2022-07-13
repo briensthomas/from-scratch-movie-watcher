@@ -4,7 +4,8 @@ import { useDataContext } from './DataProvider';
 
 export default function SearchPage() {
   const { movies, getAllMovies } = useDataContext();
-  const [title, setTitle] = useState('a');
+  const [title, setTitle] = useState('A Bug\'s Life');
+
 
   return (
     <div>SearchPage
@@ -14,7 +15,7 @@ export default function SearchPage() {
           onChange={(e) => setTitle(e.target.value)}/>
         <button onClick={() => getAllMovies(title)}>Search</button>
       </section>
-      <MovieList movies={movies} getAllMovies={getAllMovies}/>
+      <MovieList movies={movies} getAllMovies={getAllMovies} title={title}/>
     </div>
   );
 }
