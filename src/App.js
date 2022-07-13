@@ -7,14 +7,14 @@ import {
   Redirect
 } from 'react-router-dom';
 import AuthPage from './AuthPage';
-import MovieList from './MovieList';
 import Favorites from './Favorites';
 import './App.css';
 import { logout } from './services/fetch-utils';
 import { useDataContext } from './DataProvider';
+import SearchPage from './SearchPage';
 
 export default function App() {
-  const { user, setUser } = useDataContext();
+  const { user } = useDataContext();
 
   async function handleLogout() {
     await logout();
@@ -56,7 +56,7 @@ export default function App() {
             {
               !user
                 ? <Redirect to='/' />
-                : <MovieList />
+                : <SearchPage />
             }
           </Route>
           <Route exact path="/favorites">

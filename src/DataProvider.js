@@ -1,16 +1,24 @@
 import { useState, createContext, useContext } from 'react';
-import { getUser } from './services/fetch-utils';
+import { getUser, fetchAllMovies } from './services/fetch-utils';
 
 const DataContext = createContext();
 
 export default function DataProvider({ children }) {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(getUser());
+  const URL = 'https://image.tmdb.org/t/p/original/';
 
   const stateAndSetters = {
-    movies, setMovies,
     user, setUser,
+    getAllMovies, movies,
+    URL,
   };
+
+  async function getAllMovies(title) {
+    const movies = await fetchAllMovies(title);
+
+    setMovies(movies);
+  }
 
   return <DataContext.Provider value={stateAndSetters}>
     {children}

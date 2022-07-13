@@ -10,7 +10,7 @@ const headers = {
 
 exports.handler = async (event, context) => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${event.queryStringParameters.title}?api_key=${API_KEY}`);
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${event.queryStringParameters.title}&page=1`);
     const data = await response.json();
     const json = JSON.stringify(data);
     

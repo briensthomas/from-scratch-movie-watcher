@@ -19,3 +19,11 @@ export async function logout() {
 export function getUser() {
   return client.auth.user();
 }
+
+export async function fetchAllMovies(title) {
+  const data = await fetch(`/.netlify/functions/movies?title=${title}`);
+  const { results } = await data.json();
+
+  console.log(results);
+  return results;
+}
