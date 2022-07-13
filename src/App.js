@@ -16,10 +16,13 @@ import { useDataContext } from './DataProvider';
 
 
 export default function App() {
-  const { user } = useDataContext();
+  const { user, setUser, setWatchlist, setMovies } = useDataContext();
 
   async function handleLogout() {
+    setWatchlist('');
+    setMovies('');
     await logout();
+    setUser(null);
   }
 
   return (
@@ -30,16 +33,17 @@ export default function App() {
             <li>
               <Link to="/">Auth Page</Link>
             </li>
-            <li>
-              <Link to="/movies">Movies List Search</Link>
-            </li>
-            <li>
-              <Link to="/watchlist">Watchlist </Link>
-            </li>
-            {
-              user
-              && <li>
+            {user &&
+            <>
+              <li>
+                <Link to="/movies">Movies List Search</Link>
+              </li>
+              <li>
+                <Link to="/watchlist">Watchlist </Link>
+              </li>
+              <li>
                 <button onClick={handleLogout}>Logout</button></li>
+            </>
             }
           </ul>
         </nav>

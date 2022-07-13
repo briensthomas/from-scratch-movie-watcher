@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MovieList from './MovieList';
 import { useDataContext } from './DataProvider';
 
 export default function SearchPage() {
-  const { movies, getAllMovies } = useDataContext();
+  const { movies, getAllMovies, handleFetchWatchlist, setUser, user, watchlist } = useDataContext();
   const [title, setTitle] = useState('A Bug\'s Life');
 
+  useEffect(() => {
+    if (!watchlist) handleFetchWatchlist();
+    setUser(user);
+  }, [user]); //eslint-disable-line
 
   return (
-    <div>SearchPage
-      <section>
+    <div className='search'>
+      <section className='search-input'>
 
         <input value={title}
           onChange={(e) => setTitle(e.target.value)}/>

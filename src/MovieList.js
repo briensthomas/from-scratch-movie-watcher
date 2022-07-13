@@ -6,12 +6,10 @@ export default function MovieList({ movies }) {
     handleAddToWatchlist, 
     handleFetchWatchlist,
     handleDeleteFromWatchlist,
-    watchlist,
+    watchlist, setUser, user,
   } = useDataContext();
 
-  useEffect(() => {
-    if (!watchlist) handleFetchWatchlist();
-  }, []); //eslint-disable-line
+
 
   return (
     <div className='movies-list'>

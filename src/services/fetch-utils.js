@@ -1,4 +1,3 @@
-import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers.js';
 import { client } from './client.js';
 
 
@@ -17,6 +16,7 @@ export async function signInUser(email, password) {
 
 export async function logout() {
   await client.auth.signOut();
+  localStorage.clear();
 }
 
 export function getUser() {
@@ -41,11 +41,22 @@ export async function createWatchlist(watchlist) {
 }
 
 export async function fetchWatchlist(id) {
-  const { body } = await client.from('movie_watchlist')
-    .select('*')
-    .match({ user_id: getUser().id });
+  if (id) {
+    const { body } = await client
+      .from('movie_watchlist')
+      .select('*')
+      .match({ user_id: id });
 
-  return body;
+    return body;
+  } else {
+    const { body } = await client
+      .from('movie_watchlist')
+      .select('*')
+      .match({ user_id: getUser().id });
+
+    return body;
+
+  }
 }
 
 export async function deleteFromWatchlist(id) {

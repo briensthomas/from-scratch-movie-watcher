@@ -17,13 +17,18 @@ export default function DataProvider({ children }) {
 
   const stateAndSetters = {
     user, setUser,
-    getAllMovies, movies,
+    getAllMovies, movies, setMovies,
     URL,
-    watchlist, handleAddToWatchlist,
+    watchlist, setWatchlist,
+    handleAddToWatchlist,
     handleFetchWatchlist,
     handleDeleteFromWatchlist,
 
   };
+
+  console.log(user);
+  console.log(movies);
+  console.log(watchlist);
 
   async function getAllMovies(title) {
     const movies = await fetchAllMovies(title);

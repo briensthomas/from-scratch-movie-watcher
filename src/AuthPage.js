@@ -25,12 +25,14 @@ export default function AuthPage() {
 
     setUser(user);
   }
-
+  
+  
   async function handleSignIn(e) {
     e.preventDefault();
     const user = await signInUser(signInEmail, signInPassword);
-
+    
     setUser(user);
+    console.log(user);
   }
 
   return (
